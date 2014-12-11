@@ -1,5 +1,9 @@
 <?php 
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> FETCH_HEAD
 $url = 'https://www.loma.cnrs.fr/category/actualite-loma/actualite-congres-seminaires-loma/';
 $timeout = 10;
 

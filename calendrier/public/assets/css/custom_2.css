@@ -6,12 +6,26 @@
 	position: relative;
 	overflow: hidden;
 }
-
+#affichageliste {
+	max-width: 900px;
+	width: 100%;
+	margin:auto;
+}
 .custom-inner {
 	background: #fff;
 	box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
-
+#imgune {
+	 background: none repeat scroll 0 0 #fff;
+    border: 1px solid #999;
+    float: left;
+    font-size: 45px;
+    height: 100px;
+    margin-right: 10px;
+    padding-top: 22px;
+    text-align: center;
+    width: 100px;
+}
 .custom-inner:before,
 .custom-inner:after  {
 	content: '';
@@ -187,7 +201,7 @@
 /* Modifications */
 
 .fc-calendar-container {
-	height: 450px;
+	min-height: 450px;
 	width: auto;
 	padding: 30px;
 	background: #f6f6f6;

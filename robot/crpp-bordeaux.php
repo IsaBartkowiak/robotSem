@@ -1,6 +1,14 @@
 <meta charset="UTF-8">
 <?php
+<<<<<<< HEAD
 include('simplehtmldom_1_5/simple_html_dom.php');
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> FETCH_HEAD
+include('simple_html_dom.php');
+>>>>>>> origin/master
 $html = new simple_html_dom();
 $html = file_get_html('http://www.crpp-bordeaux.cnrs.fr/spip.php?page=seminaires&type=actualite');
 $collection = $html->find('font');

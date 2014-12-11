@@ -42,6 +42,12 @@ class RobotSeminaire {
                         $this->seminaire [$this->i]['orateur']=$orlieu[0];
                         
                 }
+<<<<<<< HEAD
+                if (empty($this->seminaire [$this->i]['orateur'])){
+                         $this->seminaire [$this->i]['orateur']='none';
+                        } 
+=======
+>>>>>>> FETCH_HEAD
 
 
                 //DATE 
