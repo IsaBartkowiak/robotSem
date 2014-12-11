@@ -62,7 +62,7 @@
 			$select->setFetchMode(PDO::FETCH_OBJ);
 
 			while( $ligne = $select->fetch() ){
-	
+	?><div id="imgune"><?php echo date("d", strtotime($ligne->date));?></div><?php
  						echo '<h2>'.$ligne->titre.'</h2>';
  						echo "<p>Orateur :".$ligne->orateur."</p>";
  						echo "<p>Lieu : ".$ligne->lieu."</p>";

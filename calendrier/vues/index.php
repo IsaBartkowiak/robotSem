@@ -25,7 +25,7 @@
 			
 			<header class="clearfix">
 				<div class="right">
-					<h1><img src="../public/assets/images/logo.png" width="180px"/></h1>
+					<h1><img src="../assets/images/logo.png" width="180px"/></h1>
 				</div>
 
 				<div class="left">
