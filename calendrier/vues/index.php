@@ -12,10 +12,10 @@
 		<link rel="shortcut icon" href="../favicon.ico"> 
 		<link href='http://fonts.googleapis.com/css?family=Metrophobic' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" type="text/css" href="css/calendar.css" />
-		<link rel="stylesheet" type="text/css" href="css/custom_2.css" />
-		<link rel="stylesheet" type="text/css" href="css/animate.css" />
-		<script src="js/modernizr.custom.63321.js"></script>
+		<link rel="stylesheet" type="text/css" href="../assets/css/calendar.css" />
+		<link rel="stylesheet" type="text/css" href="../assets/css/custom_2.css" />
+		<link rel="stylesheet" type="text/css" href="../assets/css/animate.css" />
+		<script src="../assets/js/modernizr.custom.63321.js"></script>
 	</head>
 	<body>
 		<div class="container">	
@@ -23,7 +23,7 @@
 			
 			<header class="clearfix">
 				<div class="right">
-					<h1><img src="images/logo.png" width="180px"/></h1>
+					<h1><img src="../assets/images/logo.png" width="180px"/></h1>
 				</div>
 
 				<div class="left">
@@ -60,13 +60,14 @@
 				</div>
 			</section>
 		</div><!-- /container -->
-		<script type="text/javascript" src="js/jquery.min.js"></script>
-		<script type="text/javascript" src="js/jquery.calendario.js"></script>
-		<script type="text/javascript" src="js/cal.js"></script>
+		<script type="text/javascript" src="../assets/js/jquery.min.js"></script>
+		<script type="text/javascript" src="../assets/js/jquery.calendario.js"></script>
+		<script type="text/javascript" src="../assets/js/cal.js"></script>
 		<script type="text/javascript">	
 var codropsEvents = {
-	<?php $bd->listerSeminairesCal(); ?>
-		} 
-		</script>
+	'11-23-2014' : '<a href="http://tympanus.net/codrops/2012/11/23/three-script-updates/">Three Script Updates</a>',
+		<?php $bd->listerSeminairesCal(); ?>
+	};
+	</script>
 	</body>
 </html>

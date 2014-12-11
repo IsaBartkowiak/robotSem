@@ -4,20 +4,35 @@ class Database {
 	private $user;
 	private $password;
 	private $dbname;
-	private $db;
-
+	private $bd;
+	public function __construct()  {
+		$this->server = 'localhost';
+		$this->user = 'root';
+		$this->password = 'root';
+		$this->dbname = 'seminaires';
+		try
+		{
+		$this->bd = new PDO("mysql:host=$this->server;dbname=$this->dbname", "$this->user", "$this->password");
+		}
+		catch(Exception $e)
+		{
+        die('Erreur : '.$e->getMessage());
+		}
+	}
 	public function listerSeminairesCal() {
-		$bd->query("SET NAMES 'utf8'");
-		$statement=$bd->prepare("SELECT *, DATE_FORMAT(date, '%m-%d-%Y') AS date FROM seminaire");
-		$statement->execute();
-		$results=$statement->fetchAll(PDO::FETCH_ASSOC);
-		echo json_encode($results);
+		$reponse = $this->bd->prepare("SELECT * FROM seminaire");
+		$reponse->execute();
+		while ($donnees = $reponse->fetch())
+		{
+			?>
+
+'<?php echo date("m-d-Y", strtotime($donnees['date'])); ?>' : '<span>Titre : <?php echo $donnees['titre']; ?><br>Orateur : <?php echo $donnees['orateur']; ?></span>',<?php
+		}
 	}
 	public function listerSeminairesLs($debut,$fin) {
-		$bd->query("SET NAMES 'utf8'");
-        $select = $bd->query("SELECT * FROM seminaire WHERE date BETWEEN '$debut' AND '$fin' ORDER BY date ASC");
+		$this->bd->query("SET NAMES 'utf8'");
+        $select = $this->bd->query("SELECT * FROM seminaire WHERE date BETWEEN '$debut' AND '$fin' ORDER BY date ASC");
 		$select->setFetchMode(PDO::FETCH_OBJ);
-
 		while( $ligne = $select->fetch() ){
 	
  			echo '<h2>'.$ligne->titre.'</h2>';
@@ -27,12 +42,5 @@ class Database {
  			echo "<p>".$ligne->lien."</p>";
 		}
 	}
-	public function __construct()  {
-		$this->$server = 'localhost';
-		$this->$user = 'root';
-		$this->$password = '';
-		$this->$dbname = 'seminaire';
-		$this->$db = new PDO("mysql:host='$server';dbname='$dbname', '$user', '$password'");
-	}
-
  }
+ ?>
