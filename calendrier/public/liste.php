@@ -91,7 +91,7 @@
 
   			try
             {
-              $pdo = new PDO('mysql:host=localhost;dbname=seminaire', 'root', "");   
+              $pdo = new PDO('mysql:host=localhost;dbname=seminaires', 'root', 'root');   
 
             }
             catch (Exception $e)
