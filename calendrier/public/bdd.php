@@ -26,7 +26,7 @@ class Database {
 		{
 			?>
 
-'<?php echo date("m-d-Y", strtotime($donnees['date'])); ?>' : '<span>Titre : <?php echo $donnees['titre']; ?><br>Orateur : <?php echo $donnees['orateur']; ?></span>',<?php
+'<?php echo date("m-d-Y", strtotime($donnees['date'])); ?>' : '<span><h2>Titre : <?php echo $donnees['titre']; ?></h2><p>Orateur : <?php echo $donnees['orateur']; ?></p><p>Lieu : <?php echo $donnees['lieu']; ?></p><img src="../public/assets/images/logo-<?php echo $donnees['labo']; ?>.png"/></span>',<?php
 		}
 	}
 	public function listerSeminairesLs($debut,$fin) {
