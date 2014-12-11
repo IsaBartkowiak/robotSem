@@ -31,15 +31,16 @@
 						
 					}
 				}
-			?><div id="topmois"><?php
-				echo '<h2 class="animated fadeIn">'.$months[$mois].' '.$annee.'</h2>';?>
-				<div id="precsuiv"><?php 
-				echo '<a onclick="$(\'#affichageliste\').load(\'liste.php?m='.($mois-1).'&a='.$annee.'\');" href="#">Mois précedent</a>';
-				echo '<a onclick="$(\'#affichageliste\').load(\'liste.php?m='.($mois+1).'&a='.$annee.'\');" href="#">Mois suivant</a>';
-
-			?>
-			</div>
-			</div>
+			?><div class="custom-header clearfix">
+							<nav>
+							<?php	echo '<span class="custom-prev" onclick="$(\'#affichageliste\').load(\'liste.php?m='.($mois-1).'&a='.$annee.'\');" id="custom-prev"></span>';
+								echo '<span class="custom-next" onclick="$(\'#affichageliste\').load(\'liste.php?m='.($mois+1).'&a='.$annee.'\');" id="custom-next"></span>'; ?>
+							</nav>
+							<?
+							echo '<h2 class="custom-month" id="custom-month">'.$months[$mois].'</h2>';
+							echo '<h3 class="custom-year" id="custom-year">'.$annee.'</h3>'; ?>
+						</div>
+						<div class="fc-calendar-container" id="calendar">
 			<?php
 
   			try
@@ -63,12 +64,11 @@
 			while( $ligne = $select->fetch() ){
 	
  						echo '<h2>'.$ligne->titre.'</h2>';
- 						echo "<p>Date: ".$ligne->date."</p>";
- 						echo "<p>".$ligne->orateur."</p>";
- 						echo "<p>".$ligne->lieu."</p>";
+ 						echo "<p>Orateur :".$ligne->orateur."</p>";
+ 						echo "<p>Lieu : ".$ligne->lieu."</p>";
  						echo "<p>".$ligne->lien."</p>";
 					}
 
 
 
-		?>
+		?></div>
