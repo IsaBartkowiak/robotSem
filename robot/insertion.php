@@ -20,6 +20,9 @@ $seminairesLof = $extraction->setSemLof($dataLof);
 $seminairesCenbg = $extraction->setSemCenbg($dataCenbg);
 $seminairesCrpp = $extraction->setSemCrpp($dataCrpp);
 
+//print_r($seminairesLof);
+//print_r($seminairesCrpp);
+
 //INSERTION DANS BD
 $database->insertSeminaire($seminairesLof);
 $database->insertSeminaire($seminairesCenbg);

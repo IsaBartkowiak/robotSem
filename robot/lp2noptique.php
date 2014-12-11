@@ -1,10 +1,7 @@
 <meta charset="UTF-8">
-<<<<<<< HEAD
-<?php 
 
-=======
+
 <?php
->>>>>>> FETCH_HEAD
 
 $url = 'https://www.lp2n.institutoptique.fr/Publications-documents/Seminaires';
 $timeout = 10;

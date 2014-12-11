@@ -2,8 +2,6 @@
 
 class RobotSeminaire {
 
-   private $seminaire = array(); // tab 2D assoc local qui contiendra les séminaires
-   private $i = 0; //compteur pour le tableau 2D
 
     /*------------------------------------------------------
     EXTRACTION DES DONNEES DU LABO LOF 
@@ -17,21 +15,21 @@ class RobotSeminaire {
     public function setSemLof($html) {
 
 
-
+                $i = 0;
                 // EXTRACTION DES DONNEES
                 foreach($html->find('div.resume') as $e){
 
                
                 // INIT (valeur pas défaut)
-                $this->seminaire[$this->i]['lien'] = "";
-                $this->seminaire[$this->i]['orateur'] = "";
-                $this->seminaire[$this->i]['lieu'] = "LOF, Pessac";
+                $seminaire[$i]['lien'] = "";
+                $seminaire[$i]['orateur'] = "";
+                $seminaire[$i]['lieu'] = "LOF, Pessac";
                
 
 
                 // TITRE
                 foreach($e->find('h3 a') as $titre){
-                $this->seminaire[$this->i]['titre']=$titre->innertext;
+                $seminaire[$i]['titre']=$titre->innertext;
                 }
 
                 // ORATEUR 
@@ -39,15 +37,10 @@ class RobotSeminaire {
 
                         $orlieu = $orlieu->plaintext; 
                         $orlieu= explode(",", $orlieu, 2);
-                        $this->seminaire [$this->i]['orateur']=$orlieu[0];
+                        $seminaire[$i]['orateur']=$orlieu[0];
                         
                 }
-<<<<<<< HEAD
-                if (empty($this->seminaire [$this->i]['orateur'])){
-                         $this->seminaire [$this->i]['orateur']='none';
-                        } 
-=======
->>>>>>> FETCH_HEAD
+               
 
 
                 //DATE 
@@ -56,28 +49,28 @@ class RobotSeminaire {
                     $val= $p->plaintext;
                     if($val != "Lire la suite"){  //On exclut les cellules contenant "lire la suite"
                     $val = $this->lof_formatDate($val);
-                    $this->seminaire[$this->i]['date']=$this->format_date($val);
+                    $seminaire[$i]['date']=$this->format_date($val);
                     }   
                 }
 
                 //LIEN
                 foreach($e->find('p.suite a') as $lien){
-                            $this->seminaire [$this->i]['lien']='http://www.lof.cnrs.fr/';
-                            $this->seminaire [$this->i]['lien'].=$lien->href;
+                            $seminaire[$i]['lien']='http://www.lof.cnrs.fr/';
+                            $seminaire[$i]['lien'].=$lien->href;
                  }
 
                  
 
                 // LABO pour l'affichage des images en fonction du labo 
-                 $this->seminaire [$this->i]['labo']='lof';
+                 $seminaire[$i]['labo']='lof';
 
               
               
-              $this->i++; 
+              $i++; 
 
             }
 
-            return  $this->seminaire;
+            return  $seminaire;
 
 } 
 
@@ -94,28 +87,28 @@ class RobotSeminaire {
     public function setSemCenbg($html){
 
 
-            
+            $i = 0;
 
             foreach($html->find('ul.spip li') as $e){
 
                     
                   //INIT ( valeur par défaut )
-                    $this->seminaire[$this->i]['lien'] = "";
-                    $this->seminaire[$this->i]['lieu'] = "CENBG";
+                    $seminaire[$i]['lien'] = "";
+                    $seminaire[$i]['lieu'] = "CENBG";
 
                   //TITRE
                    foreach($e->find('strong') as $titre){
-                    $this->seminaire[$this->i]['titre']=$titre->plaintext;
+                    $seminaire[$i]['titre']=utf8_encode($titre->plaintext);
                     }
 
-                    if (empty($this->seminaire [$this->i]['titre'])){
-                        $this->seminaire [$this->i]['titre']='cafe labo';
+                    if (empty($seminaire [$i]['titre'])){
+                        $seminaire [$i]['titre']='cafe labo';
                     }
 
                   //ORATEUR
                    foreach($e->find('i') as $orateur){
-                    if (!array_key_exists('orateur', $this->seminaire[$this->i])){
-                        $this->seminaire [$this->i]['orateur']= utf8_encode($orateur->innertext);
+                    if (!array_key_exists('orateur', $seminaire[$i])){
+                        $seminaire [$i]['orateur']= utf8_encode($orateur->innertext);
                     }
                     }
 
@@ -144,7 +137,7 @@ class RobotSeminaire {
 
 
                         $dt= $this->formatJour($dtlieu[0]);                                  
-                        $this->seminaire[$this->i]['date']=$this->format_date($dt);  
+                        $seminaire[$i]['date']=$this->format_date($dt);  
                     } 
                    
                     if (array_key_exists(1, $dtlieu)){     
@@ -152,23 +145,23 @@ class RobotSeminaire {
                         $dtlieu[1]= str_replace("</li>","", $dtlieu[1]);
                         $dtlieu[1] = preg_replace("/<\/font>/","", $dtlieu[1]);
 
-                       $this->seminaire [$this->i]['lieu']=$dtlieu[1];  
+                       $seminaire [$i]['lieu']=$dtlieu[1];  
                     } 
 
 
                      //LIEN
                     foreach($e->find('strong a') as $lien){
-                        $this->seminaire [$this->i]['lien']=$lien->href;
+                        $seminaire [$i]['lien']=$lien->href;
                     }
 
                     // LABO pour l'affichage des images en fonction du labo 
-                    $this->seminaire [$this->i]['labo']='cenbg';
+                    $seminaire [$i]['labo']='cenbg';
 
 
-               $this->i++;     
+               $i++;     
             }
 
-        return  $this->seminaire;
+        return  $seminaire;
            
     }
 
@@ -184,6 +177,8 @@ class RobotSeminaire {
 
     public function setSemCrpp($html){
 
+        
+
         foreach($html->find('font') as $e){
                         
                 foreach($e->find('a') as $lien){
@@ -191,8 +186,10 @@ class RobotSeminaire {
                 }
         }
 
+        $y=0;
         $collection = $html->find('font');
         foreach($collection as $e) {
+
             if(isset($e->face) && !strpos($e,'Calendrier')) { 
                     $pattern = '#<a[^<]*>[^<]*</a>#im';
                     $e = preg_replace($pattern, '', $e);
@@ -208,6 +205,7 @@ class RobotSeminaire {
                     $orateu = preg_replace('/,/', '', $orateu, 1);
                     $orate = strstr($orateu, ',');
                     $orate = preg_replace('/,/', '', $orate, 1);
+
                     if (strpos($orate,'(')){
                     $orat = strstr($orate, ')', true); 
                     }
@@ -222,26 +220,27 @@ class RobotSeminaire {
                     else {
                     $suj = strstr($orate, ','); 
                     }
-
+                    
                    
                     $suj = str_replace(')', '', $suj);
                     $suj = str_replace(',', '', $suj);
                     $sujet = preg_replace('/,/', '', $suj, 1); // SUJET OK
                     echo 'DATE : '.$this->format_date($date).'<br> HEURE : '.$heure.'<br> LIEU : '. $lieu.'<br> ORATEUR : '.$orateur.'<br> SUJET : '.$sujet.'<br> Lien : '.$link.'<br><br>';
                     
-                    $this->seminaire [$this->i]['date']=$this->format_date($date);
-                    $this->seminaire [$this->i]['titre']=utf8_encode($sujet);
-                    $this->seminaire [$this->i]['orateur']=$orateur;
-                    $this->seminaire [$this->i]['lien']= 'http://www.crpp-bordeaux.cnrs.fr/spip.php?page=seminaires&type=actualite';
-                    $this->seminaire [$this->i]['lieu']=$lieu;
-                    $this->seminaire [$this->i]['labo']='CRPP';
 
+                    $seminaire [$y]['date']=$this->format_date($date);
+                    $seminaire [$y]['titre']=utf8_encode($sujet);
+                    $seminaire [$y]['orateur']=utf8_encode($orateur);
+                    $seminaire [$y]['lien']= 'http://www.crpp-bordeaux.cnrs.fr/spip.php?page=seminaires&type=actualite';
+                    $seminaire [$y]['lieu']=$lieu;
+                    $seminaire [$y]['labo']='CRPP';
+                     $y= $y+1;  
                  }
-                   $this->i++;  
+                  
             }
 
-
-            return $this->seminaire;
+            print_r($seminaire);
+            return $seminaire;
 
 
     }

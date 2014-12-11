@@ -15,8 +15,8 @@
 
              try
             {
-              $pdo = new PDO('mysql:host='.$this->server.';dbname='.$this->dbname, $this->user, $this->pword); 
-                $pdo->query("SET NAMES 'utf8'");
+              $pdo = new PDO('mysql:host='.$this->server.';dbname='.$this->dbname.';charset=utf8', $this->user, $this->pword); 
+            $pdo->query("SET NAMES 'utf8'");
               $this->pdo = $pdo;  
             }
             catch (Exception $e)
