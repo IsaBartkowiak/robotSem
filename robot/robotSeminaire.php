@@ -166,6 +166,80 @@ class RobotSeminaire {
            
     }
 
+    /*------------------------------------------------------
+    EXTRACTION DES DONNEES DU LABO LOF 
+    retourne une tableau 2D associatif de la forme 
+    $seminaire[$i]['titre']
+    $seminaire[$i]['date']
+    $seminaire[$i]['orateur']
+    $seminaire[$i]['lieu']
+    $seminaire[$i]['labo']
+    ------------------------------------------------------*/
+
+    public function setSemCrpp($html){
+
+        foreach($html->find('font') as $e){
+                        
+                foreach($e->find('a') as $lien){
+                    $link=$lien->href;
+                }
+        }
+
+        $collection = $html->find('font');
+        foreach($collection as $e) {
+            if(isset($e->face) && !strpos($e,'Calendrier')) { 
+                    $pattern = '#<a[^<]*>[^<]*</a>#im';
+                    $e = preg_replace($pattern, '', $e);
+                    $e = strip_tags($e);
+                    $date = strstr($e, ',', true);// date OK
+                    $heur = strstr($e, ',');
+                    $heur = preg_replace('/,/', '', $heur, 1);
+                    $heure = strstr($heur, ',', true); // HEURE OK
+                    $lie = strstr($heur, ',');
+                    $lie = preg_replace('/,/', '', $lie, 1);
+                    $lieu = strstr($lie, ',', true);// LIEU OK
+                    $orateu = strstr($lie, ',');
+                    $orateu = preg_replace('/,/', '', $orateu, 1);
+                    $orate = strstr($orateu, ',');
+                    $orate = preg_replace('/,/', '', $orate, 1);
+                    if (strpos($orate,'(')){
+                    $orat = strstr($orate, ')', true); 
+                    }
+                    else {
+                    $orat = strstr($orate, ',', true); 
+                    }
+                    $orateu = str_replace('(','', $orat);
+                    $orateur = str_replace(')','', $orateu); // ORATEUR OK 
+                    if (strpos($orate,'(')){
+                    $suj = strstr($orate, ')'); 
+                    }
+                    else {
+                    $suj = strstr($orate, ','); 
+                    }
+
+                   
+                    $suj = str_replace(')', '', $suj);
+                    $suj = str_replace(',', '', $suj);
+                    $sujet = preg_replace('/,/', '', $suj, 1); // SUJET OK
+                    echo 'DATE : '.$this->format_date($date).'<br> HEURE : '.$heure.'<br> LIEU : '. $lieu.'<br> ORATEUR : '.$orateur.'<br> SUJET : '.$sujet.'<br> Lien : '.$link.'<br><br>';
+                    
+                    $this->seminaire [$this->i]['date']=$this->format_date($date);
+                    $this->seminaire [$this->i]['titre']=utf8_encode($sujet);
+                    $this->seminaire [$this->i]['orateur']=$orateur;
+                    $this->seminaire [$this->i]['lien']= 'http://www.crpp-bordeaux.cnrs.fr/spip.php?page=seminaires&type=actualite';
+                    $this->seminaire [$this->i]['lieu']=$lieu;
+                    $this->seminaire [$this->i]['labo']='CRPP';
+
+                 }
+                   $this->i++;  
+            }
+
+
+            return $this->seminaire;
+
+
+    }
+
 
 //********************************************************FONCTIONS ANNEXES******************************************************//
 //******************************************************************************************************************************//
