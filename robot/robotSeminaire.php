@@ -39,7 +39,7 @@ class RobotSeminaire {
                 }
                 if (empty($this->seminaire [$this->i]['orateur'])){
                          $this->seminaire [$this->i]['orateur']='none';
-                        }
+                        } 
 
                 if (empty($this->seminaire [$this->i]['lieu'])){
                          $this->seminaire [$this->i]['lieu']='Non renseigné';

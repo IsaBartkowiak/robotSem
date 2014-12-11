@@ -1,5 +1,6 @@
 <meta charset="UTF-8">
 <?php
+
 include('simple_html_dom.php');
 $html = new simple_html_dom();
 $html = file_get_html('http://www.crpp-bordeaux.cnrs.fr/spip.php?page=seminaires&type=actualite');

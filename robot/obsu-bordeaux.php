@@ -16,4 +16,4 @@ foreach($collection as $e) {
 		echo 'DATE: '.$date;
 		echo '<br><br>';
 	}
-}
+}  

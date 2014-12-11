@@ -39,7 +39,7 @@
  */
 
 /**
- * All of the Defines for the classes below.
+ * All of the Defines for the classes below. 
  * @author S.C. Chen <me578022@gmail.com>
  */
 define('HDOM_TYPE_ELEMENT', 1);

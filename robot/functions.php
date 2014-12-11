@@ -1,6 +1,7 @@
 <?php 
 
 
+
 function format_jour ($dt){
 
     if(preg_match("/,/i", $dt)){
