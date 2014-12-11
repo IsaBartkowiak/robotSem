@@ -1,4 +1,3 @@
-<div class="custom-calendar-wrap">
 				<?php 
 				$months	= array('1'=>'Janvier', '2'=>'Février', '3'=>'Mars', '4'=>'Avril', '5'=>'Mai', '6'=>'Juin', '7'=>'Juillet', '8'=>'Août','9'=> 'Septembre','10'=> 'Octobre', '11'=>'Novembre', '12'=>'Décembre');
 				$format = array();
@@ -32,13 +31,15 @@
 						
 					}
 				}
-
+			?><div id="topmois"><?php
+				echo '<h2 class="animated fadeIn">'.$months[$mois].' '.$annee.'</h2>';?>
+				<div id="precsuiv"><?php 
 				echo '<a onclick="$(\'#affichageliste\').load(\'liste.php?m='.($mois-1).'&a='.$annee.'\');" href="#">Mois précedent</a>';
-				echo '<div class="animated fadeIn">'.$months[$mois].' '.$annee.'</div>';
 				echo '<a onclick="$(\'#affichageliste\').load(\'liste.php?m='.($mois+1).'&a='.$annee.'\');" href="#">Mois suivant</a>';
 
 			?>
-			
+			</div>
+			</div>
 			<?php
 
   			try
@@ -71,4 +72,3 @@
 
 
 		?>
-</div>

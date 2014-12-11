@@ -12,6 +12,7 @@
 		<link href='http://fonts.googleapis.com/css?family=Metrophobic' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" type="text/css" href="../assets/css/calendar.css" />
+		<link rel="stylesheet" href="../assets/css/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="../assets/css/custom_2.css" />
 		<link rel="stylesheet" type="text/css" href="../assets/css/animate.css" />
 		<script src="../assets/js/modernizr.custom.63321.js"></script>
