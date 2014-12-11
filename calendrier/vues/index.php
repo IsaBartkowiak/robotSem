@@ -5,9 +5,8 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-		<title>Flexible Calendar</title>
-		<meta name="description" content="Flexible Calendar with jQuery and CSS3" />
-		<meta name="keywords" content="responsive, calendar, jquery, plugin, full page, flexible, javascript, css3, media queries" />
+		<title>L'agenda des séminaires scientifiques</title>
+		<meta name="description" content="L'agenda des séminaires scientifiques Bordelais" />
 		<meta name="author" content="Codrops" />
 		<link rel="shortcut icon" href="../favicon.ico"> 
 		<link href='http://fonts.googleapis.com/css?family=Metrophobic' rel='stylesheet' type='text/css'>
@@ -16,6 +15,7 @@
 		<link rel="stylesheet" type="text/css" href="../assets/css/custom_2.css" />
 		<link rel="stylesheet" type="text/css" href="../assets/css/animate.css" />
 		<script src="../assets/js/modernizr.custom.63321.js"></script>
+		<script type="text/javascript" src="../assets/js/jquery.min.js"></script>
 	</head>
 	<body>
 		<div class="container">	
@@ -38,13 +38,14 @@
 
 			<nav class="menu">
 				<ul>
-					<li class="sp"><a href="#">CALENDRIER</a></li>
-					<li class="sep"><a href="liste.php">LISTE</a></li>
+					<li class="sp"><a href="#" onclick="$('#calendrier').fadeIn();$('#affichageliste').fadeOut();">CALENDRIER</a></li>
+					<li class="sep"><a href="#" onclick="$('#affichageliste').fadeIn();$('#affichageliste').load('liste.php');$('#calendrier').fadeOut();">LISTE</a></li>
 				</ul>
 			</nav>
 			</section>
-
-			<section class="main animated fadeInUp">
+			<section id="affichageliste">
+			</section>
+			<section class="main animated fadeInUp" id="calendrier">
 				<div class="custom-calendar-wrap">
 					<div id="custom-inner" class="custom-inner">
 						<div class="custom-header clearfix">
@@ -60,9 +61,9 @@
 				</div>
 			</section>
 		</div><!-- /container -->
-		<script type="text/javascript" src="../assets/js/jquery.min.js"></script>
 		<script type="text/javascript" src="../assets/js/jquery.calendario.js"></script>
 		<script type="text/javascript" src="../assets/js/cal.js"></script>
+		<script type="text/javascript" src="../assets/js/main.js"></script>
 		<script type="text/javascript">	
 var codropsEvents = {
 	'11-23-2014' : '<a href="http://tympanus.net/codrops/2012/11/23/three-script-updates/">Three Script Updates</a>',
