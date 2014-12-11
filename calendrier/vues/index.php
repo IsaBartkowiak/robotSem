@@ -40,8 +40,8 @@
 
 			<nav class="menu">
 				<ul>
-					<li class="sp"><a href="#" onclick="$('#calendrier').fadeIn();$('#affichageliste').fadeOut();">CALENDRIER</a></li>
-					<li class="sep"><a href="#" onclick="$('#affichageliste').fadeIn();$('#affichageliste').load('liste.php');$('#calendrier').fadeOut();">LISTE</a></li>
+					<li class="sp"><a href="#" onclick="$('#calendrier').fadeIn();$('#affichageliste').hide();">CALENDRIER</a></li>
+					<li class="sep"><a href="#" onclick="$('#affichageliste').fadeIn();$('#affichageliste').load('liste.php');$('#calendrier').hide();">LISTE</a></li>
 				</ul>
 			</nav>
 			</section>
