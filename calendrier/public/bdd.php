@@ -5,12 +5,11 @@ class Database {
 	private $password;
 	private $dbname;
 	private $bd;
-
 	public function __construct()  {
 		$this->server = 'localhost';
 		$this->user = 'root';
-		$this->password = 'root';
-		$this->dbname = 'seminaires';
+		$this->password = '';
+		$this->dbname = 'seminaire';
 		try
 		{
 		$this->bd = new PDO("mysql:host=$this->server;dbname=$this->dbname", "$this->user", "$this->password");
@@ -27,14 +26,13 @@ class Database {
 		{
 			?>
 
-'<?php echo date("m-d-Y", strtotime($donnees['date'])); ?>' : '<span>Titre : <?php echo $donnees['titre']; ?><br>Orateur : <?php echo $donnees['orateur']; ?></span>',<?php
+'<?php echo date("m-d-Y", strtotime($donnees['date'])); ?>' : '<span><h2>Titre : <?php echo $donnees['titre']; ?></h2><p>Orateur : <?php echo $donnees['orateur']; ?></p><p>Lieu : <?php echo $donnees['lieu']; ?></p><img src="../public/assets/images/logo-<?php echo $donnees['labo']; ?>.png"/></span>',<?php
 		}
 	}
 	public function listerSeminairesLs($debut,$fin) {
 		$this->bd->query("SET NAMES 'utf8'");
         $select = $this->bd->query("SELECT * FROM seminaire WHERE date BETWEEN '$debut' AND '$fin' ORDER BY date ASC");
 		$select->setFetchMode(PDO::FETCH_OBJ);
-
 		while( $ligne = $select->fetch() ){
 	
  			echo '<h2>'.$ligne->titre.'</h2>';
@@ -44,8 +42,5 @@ class Database {
  			echo "<p>".$ligne->lien."</p>";
 		}
 	}
-
  }
-
-
  ?>

@@ -11,6 +11,7 @@
 		<link rel="shortcut icon" href="../favicon.ico"> 
 		<link href='http://fonts.googleapis.com/css?family=Metrophobic' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+
 		<link rel="stylesheet" type="text/css" href="../assets/css/calendar.css" />
 		<link rel="stylesheet" href="../assets/css/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="../assets/css/custom_2.css" />
@@ -24,7 +25,7 @@
 			
 			<header class="clearfix">
 				<div class="right">
-					<h1><img src="../assets/images/logo.png" width="180px"/></h1>
+					<h1><img src="../public/assets/images/logo.png" width="180px"/></h1>
 				</div>
 
 				<div class="left">
@@ -61,7 +62,7 @@
 					</div>
 				</div>
 			</section>
-		</div><!-- /container -->
+			</div>
 		<script type="text/javascript" src="../assets/js/jquery.calendario.js"></script>
 		<script type="text/javascript" src="../assets/js/cal.js"></script>
 		<script type="text/javascript" src="../assets/js/main.js"></script>
