@@ -8,26 +8,8 @@
 							echo '<h3 class="custom-year" id="custom-year">'.$annee.'</h3>'; ?>
 						</div>
 						<div class="fc-calendar-container" id="calendar">
-			<?php
-
-  			try
-            {
-              $pdo = new PDO('mysql:host=localhost;dbname=seminaires', 'root', 'root');   
-
-            }
-            catch (Exception $e)
-            {
-                die('Erreur : '.$e->getMessage());
-            }
-
-            $dtdebut= $annee."-0".$mois."-01";
-            $dtfin= $annee."-0".$mois."-29";
-            
-
-            $pdo->query("SET NAMES 'utf8'");
-            $select = $pdo->query("SELECT * FROM seminaire WHERE date BETWEEN '$dtdebut' AND '$dtfin' ORDER BY date ASC");
-			$select->setFetchMode(PDO::FETCH_OBJ);
-
+			   
+<?php
 			while( $ligne = $select->fetch() ){
 	?><div id="imgune"><?php echo date("d", strtotime($ligne->date));?></div><?php
  						echo '<h2>'.$ligne->titre.'</h2>';

@@ -8,10 +8,11 @@ class Controller {
 		include '../vues/index.php';
 	}
 	public function listeAction() {
-		$months	= array('1'=>'Janvier', '2'=>'Février', '3'=>'Mars', '4'=>'Avril', '5'=>'Mai', '6'=>'Juin', '7'=>'Juillet', '8'=>'Août','9'=> 'Septembre','10'=> 'Octobre', '11'=>'Novembre', '12'=>'Décembre');
-				$format = array();
-				$annee = date('Y');
-				$mois = date('m');
+		global $bd;
+			$months	= array('1'=>'Janvier', '2'=>'Février', '3'=>'Mars', '4'=>'Avril', '5'=>'Mai', '6'=>'Juin', '7'=>'Juillet', '8'=>'Août','9'=> 'Septembre','10'=> 'Octobre', '11'=>'Novembre', '12'=>'Décembre');
+			$format = array();
+			$annee = date('Y');
+			$mois = date('m');
 				
 				if(isset($_GET['m']) && isset($_GET['a'])){
 					$mois= $_GET['m'];
@@ -27,6 +28,11 @@ class Controller {
 						
 					}
 				}
+			$dtdebut= $annee."-0".$mois."-01";
+            $dtfin= $annee."-0".$mois."-29";
+            $bd->setNames();
+            $select = $bd->seminaireParDate($dtdebut,$dtfin);
+			$select->setFetchMode(PDO::FETCH_OBJ);
 		include '../vues/liste.php';
 	}
 	public function contactAction() {

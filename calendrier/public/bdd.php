@@ -19,6 +19,12 @@ class Database {
         die('Erreur : '.$e->getMessage());
 		}
 	}
+	public function setNames() {
+		$this->bd->query("SET NAMES 'utf8'");
+	}
+	public function seminaireParDate($dtdebut,$dtfin) {
+		$this->bd->query("SELECT * FROM seminaire WHERE date BETWEEN '$dtdebut' AND '$dtfin' ORDER BY date ASC");
+	}
 	public function listerSeminairesCal() {
 		$reponse = $this->bd->prepare("SELECT * FROM seminaire");
 		$reponse->execute();
