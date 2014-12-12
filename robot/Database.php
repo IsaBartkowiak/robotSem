@@ -3,8 +3,8 @@
 
     private $server = 'localhost';
     private $user= 'root';
-    private $pword='';
-    private $dbname='seminaire';
+    private $pword='root';
+    private $dbname='seminaires';
     private $pdo = NULL;
 
 
