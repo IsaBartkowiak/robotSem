@@ -41,7 +41,7 @@
 			<nav class="menu">
 				<ul>
 					<li class="sp"><a href="#" onclick="$('#calendrier').fadeIn();$('#affichageliste').hide();">CALENDRIER</a></li>
-					<li class="sep"><a href="#" onclick="$('#affichageliste').fadeIn();$('#affichageliste').load('liste.php');$('#calendrier').hide();">LISTE</a></li>
+					<li class="sep"><a href="#" onclick="$('#affichageliste').fadeIn();$('#affichageliste').load('index.php?page=liste');$('#calendrier').hide();">LISTE</a></li>
 				</ul>
 			</nav>
 			</section>
@@ -69,7 +69,9 @@
 		<script type="text/javascript">	
 var codropsEvents = {
 	'11-23-2014' : '<a href="http://tympanus.net/codrops/2012/11/23/three-script-updates/">Three Script Updates</a>',
-		<?php $bd->listerSeminairesCal(); ?>
+		<?php 
+		global $bd;
+		$bd->listerSeminairesCal(); ?>
 	};
 	</script>
 	</body>

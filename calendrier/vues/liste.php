@@ -1,40 +1,7 @@
-				<?php 
-				$months	= array('1'=>'Janvier', '2'=>'Février', '3'=>'Mars', '4'=>'Avril', '5'=>'Mai', '6'=>'Juin', '7'=>'Juillet', '8'=>'Août','9'=> 'Septembre','10'=> 'Octobre', '11'=>'Novembre', '12'=>'Décembre');
-				$format = array();
-				$annee = date('Y');
-				$mois = date('m');
-
-				/*$limitey = $annee+2;
-				while($annee < $limitey){
-				$format[$annee][$mois]= $months[$mois];
-				$mois++;
-				if($mois ==13){
-					$mois=1;
-					$annee++;
-				}
-				}
-				
-				print_r($format);*/
-			
-
-				if(isset($_GET['m']) && isset($_GET['a'])){
-					$mois= $_GET['m'];
-					$annee= $_GET['a'];
-					if($mois == 13){
-						$mois = 1;
-						$annee++;
-						
-					}
-					if($mois == 0){
-						$mois = 12;
-						$annee--;
-						
-					}
-				}
-			?><div class="custom-header clearfix">
+			<div class="custom-header clearfix">
 							<nav>
-							<?php	echo '<span class="custom-prev" onclick="$(\'#affichageliste\').load(\'liste.php?m='.($mois-1).'&a='.$annee.'\');" id="custom-prev"></span>';
-								echo '<span class="custom-next" onclick="$(\'#affichageliste\').load(\'liste.php?m='.($mois+1).'&a='.$annee.'\');" id="custom-next"></span>'; ?>
+							<?php	echo '<span class="custom-prev" onclick="$(\'#affichageliste\').load(\'index.php?page=liste&m='.($mois-1).'&a='.$annee.'\');" id="custom-prev"></span>';
+								echo '<span class="custom-next" onclick="$(\'#affichageliste\').load(\'index.php?page=liste&m='.($mois+1).'&a='.$annee.'\');" id="custom-next"></span>'; ?>
 							</nav>
 							<?
 							echo '<h2 class="custom-month" id="custom-month">'.$months[$mois].'</h2>';
