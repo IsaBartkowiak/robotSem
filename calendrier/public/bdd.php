@@ -47,18 +47,8 @@ class Database {
 '<?php echo date("m-d-Y", strtotime($donnees['date'])); ?>' : '<span><h2>Titre : <?php echo $donnees['titre']; ?></h2><p>Orateur : <?php echo $donnees['orateur']; ?></p><p>Lieu : <?php echo $donnees['lieu']; ?></p><img src="../public/assets/images/logo-<?php echo $donnees['labo']; ?>.png"/></span>',<?php
 		}
 	}
-	public function listerSeminairesLs($debut,$fin) {
-		$this->bd->query("SET NAMES 'utf8'");
-        $select = $this->bd->query("SELECT * FROM seminaire WHERE date BETWEEN '$debut' AND '$fin' ORDER BY date ASC");
-		$select->setFetchMode(PDO::FETCH_OBJ);
-		while( $ligne = $select->fetch() ){
-	
- 			echo '<h2>'.$ligne->titre.'</h2>';
- 			echo "<p>Date: ".$ligne->date."</p>";
- 			echo "<p>".$ligne->orateur."</p>";
- 			echo "<p>".$ligne->lieu."</p>";
- 			echo "<p>".$ligne->lien."</p>";
-		}
+	public function ajouterAbonne($mail) {
+	$this->bd->query("INSERT INTO newsletter (mail) VALUES ('$mail')");
 	}
  }
  ?>

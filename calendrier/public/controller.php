@@ -42,10 +42,24 @@ class Controller {
 						<div class="fc-calendar-container" id="calendar"><?php
 							      $bd->setNames();
             					  $donnees = $bd->seminaireParDate($dtdebut,$dtfin);
-		include '../vues/liste.php';
+									if (!empty($donnees)) {
+										include '../vues/liste.php';
+									}
 	}
 	public function contactAction() {
 		include '../vues/contact.php';
+	}
+	public function newsletterAction() {
+		global $bd;	
+		if (!empty($_POST['email'])){
+		$mail = $_POST['email'];
+		$bd->ajouterAbonne($mail);
+		include '../vues/newsletter-ajout.php';
+		}
+		else {
+		include '../vues/newsletter.php';
+		}
+
 	}
 }
 ?>

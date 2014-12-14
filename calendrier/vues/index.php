@@ -12,12 +12,12 @@
 		<link href='http://fonts.googleapis.com/css?family=Metrophobic' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
 
-		<link rel="stylesheet" type="text/css" href="../assets/css/calendar.css" />
-		<link rel="stylesheet" href="../assets/css/font-awesome.min.css">
-		<link rel="stylesheet" type="text/css" href="../assets/css/custom_2.css" />
-		<link rel="stylesheet" type="text/css" href="../assets/css/animate.css" />
-		<script src="../assets/js/modernizr.custom.63321.js"></script>
-		<script type="text/javascript" src="../assets/js/jquery.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="./assets/css/calendar.css" />
+		<link rel="stylesheet" href="./assets/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="./assets/css/custom_2.css" />
+		<link rel="stylesheet" type="text/css" href="./assets/css/animate.css" />
+		<script src="./assets/js/modernizr.custom.63321.js"></script>
+		<script type="text/javascript" src="./assets/js/jquery.min.js"></script>
 	</head>
 	<body>
 		<div class="container">	
@@ -25,11 +25,12 @@
 			
 			<header class="clearfix">
 				<div class="right">
-					<h1><img src="../assets/images/logo.png" width="180px"/></h1>
+					<h1><img src="./assets/images/logo.png" width="180px"/></h1>
 				</div>
 
 				<div class="left">
-					<a href="#">contact</a>
+					<a href="#" id="contact">Contact</a>
+					<a href="#" id="newsletter">Abonnement</a>
 				</div>
 			</header>
 
@@ -63,9 +64,11 @@
 				</div>
 			</section>
 			</div>
-		<script type="text/javascript" src="../assets/js/jquery.calendario.js"></script>
-		<script type="text/javascript" src="../assets/js/cal.js"></script>
-		<script type="text/javascript" src="../assets/js/main.js"></script>
+			<div id="pop-contact">
+			</div>
+		<script type="text/javascript" src="./assets/js/jquery.calendario.js"></script>
+		<script type="text/javascript" src="./assets/js/cal.js"></script>
+		<script type="text/javascript" src="./assets/js/main.js"></script>
 		<script type="text/javascript">	
 var codropsEvents = {
 	'11-23-2014' : '<a href="http://tympanus.net/codrops/2012/11/23/three-script-updates/">Three Script Updates</a>',

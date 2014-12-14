@@ -3,7 +3,8 @@ require_once 'controller.php';
 $routes = array(
 	'index',
 	'contact',
-	'liste'
+	'liste',
+	'newsletter'
 );
 $url = (isset($_GET['page']) AND !empty($_GET['page'])) ? $_GET['page'] : 'index';
 $controller = new Controller($url);

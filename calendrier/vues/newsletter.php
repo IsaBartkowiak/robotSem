@@ -1,7 +1,9 @@
 <div id="popupn">
 <span id="close">X</span>
 <form>
-
+	<label for="name">Email</label>
+	<input name="mail" id="email" type="email" placeholder="votre@email.com"/>
+	<span id="nl">Envoyer</span>
 </form>
 </div>
 <script>
