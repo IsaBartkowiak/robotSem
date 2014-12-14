@@ -45,6 +45,7 @@ class Controller {
 									if (!empty($donnees)) {
 										include '../vues/liste.php';
 									}
+						?></div><?php
 	}
 	public function contactAction() {
 		include '../vues/contact.php';

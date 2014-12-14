@@ -9,7 +9,9 @@
 #affichageliste {
 	max-width: 900px;
 	width: 100%;
+	display: none;
 	margin:auto;
+	padding:10px;
 }
 .custom-inner {
 	background: #fff;

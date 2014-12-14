@@ -1,3 +1,4 @@
+<div class="entree">
 <div id="imgune">
 <?php echo $donnees['date'];?>
 </div>
