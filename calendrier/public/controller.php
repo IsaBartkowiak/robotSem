@@ -29,10 +29,19 @@ class Controller {
 					}
 				}
 			$dtdebut= $annee."-0".$mois."-01";
-            $dtfin= $annee."-0".$mois."-29";
-            $bd->setNames();
-            $select = $bd->seminaireParDate($dtdebut,$dtfin);
-			$select->setFetchMode(PDO::FETCH_OBJ);
+            $dtfin= $annee."-0".$mois."-29"; ?>
+            			<div class="custom-header clearfix">
+							<nav>
+							<?php	echo '<span class="custom-prev" onclick="$(\'#affichageliste\').load(\'index.php?page=liste&m='.($mois-1).'&a='.$annee.'\');" id="custom-prev"></span>';
+								echo '<span class="custom-next" onclick="$(\'#affichageliste\').load(\'index.php?page=liste&m='.($mois+1).'&a='.$annee.'\');" id="custom-next"></span>'; ?>
+							</nav>
+							<?php
+							echo '<h2 class="custom-month" id="custom-month">'.$months[$mois].'</h2>';
+							echo '<h3 class="custom-year" id="custom-year">'.$annee.'</h3>'; ?>
+						</div>
+						<div class="fc-calendar-container" id="calendar"><?php
+							      $bd->setNames();
+            					  $donnees = $bd->seminaireParDate($dtdebut,$dtfin);
 		include '../vues/liste.php';
 	}
 	public function contactAction() {

@@ -23,7 +23,19 @@ class Database {
 		$this->bd->query("SET NAMES 'utf8'");
 	}
 	public function seminaireParDate($dtdebut,$dtfin) {
-		$this->bd->query("SELECT * FROM seminaire WHERE date BETWEEN '$dtdebut' AND '$dtfin' ORDER BY date ASC");
+		$select = $this->bd->prepare("SELECT * FROM seminaire WHERE date BETWEEN '$dtdebut' AND '$dtfin' ORDER BY date ASC");
+		$select->execute();
+		$select->setFetchMode(PDO::FETCH_OBJ);
+		$donnees = array();
+		while( $ligne = $select->fetch() ){
+				$donnees['date'] = date("d", strtotime($ligne->date));
+				$donnees['titre'] = $ligne->titre;
+				$donnees['orateur'] = $ligne->orateur;
+				$donnees['lieu'] = $ligne->lieu;
+				$donnees['lien'] = $ligne->lien;
+			}
+		return $donnees;
+
 	}
 	public function listerSeminairesCal() {
 		$reponse = $this->bd->prepare("SELECT * FROM seminaire");
