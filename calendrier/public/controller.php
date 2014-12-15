@@ -39,11 +39,11 @@ class Controller {
 							echo '<h2 class="custom-month" id="custom-month">'.$months[$mois].'</h2>';
 							echo '<h3 class="custom-year" id="custom-year">'.$annee.'</h3>'; ?>
 						</div>
-						<div class="fc-calendar-container" id="calendar"><?php
+						<div class="fc-calendar-container2" id="calendar"><?php
 							      $bd->setNames();
             					  $donnees = $bd->seminaireParDate($dtdebut,$dtfin);
 									if (!empty($donnees)) {
-										include '../vues/liste.php';
+											include '../vues/liste.php';
 									}
 						?></div><?php
 	}

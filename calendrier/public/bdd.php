@@ -27,12 +27,12 @@ class Database {
 		$select->execute();
 		$select->setFetchMode(PDO::FETCH_OBJ);
 		$donnees = array();
-		while( $ligne = $select->fetch() ){
-				$donnees['date'] = date("d", strtotime($ligne->date));
-				$donnees['titre'] = $ligne->titre;
-				$donnees['orateur'] = $ligne->orateur;
-				$donnees['lieu'] = $ligne->lieu;
-				$donnees['lien'] = $ligne->lien;
+		for ( $i = 0; $ligne = $select->fetch(); $i++ ){
+				$donnees[$i]['date'] = date("d", strtotime($ligne->date));
+				$donnees[$i]['titre'] = $ligne->titre;
+				$donnees[$i]['orateur'] = $ligne->orateur;
+				$donnees[$i]['lieu'] = $ligne->lieu;
+				$donnees[$i]['lien'] = $ligne->lien;
 			}
 		return $donnees;
 
