@@ -44,7 +44,7 @@ class Database {
 		{
 			?>
 
-'<?php echo date("m-d-Y", strtotime($donnees['date'])); ?>' : '<span><h2>Titre : <?php echo $donnees['titre']; ?></h2><p>Orateur : <?php echo $donnees['orateur']; ?></p><p>Lieu : <?php echo $donnees['lieu']; ?></p><img src="../public/assets/images/logo-<?php echo $donnees['labo']; ?>.png"/></span>',<?php
+'<?php echo date("m-d-Y", strtotime($donnees['date'])); ?>' : '<span><h2>Titre : <?php echo $donnees['titre']; ?></h2><p>Orateur : <?php echo $donnees['orateur']; ?></p><p>Lieu : <?php echo $donnees['lieu']; ?></p><img src="assets/images/logo-<?php echo $donnees['labo']; ?>.png"/></span>',<?php
 		}
 	}
 	public function ajouterAbonne($mail) {
