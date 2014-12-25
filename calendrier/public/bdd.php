@@ -8,8 +8,8 @@ class Database {
 	public function __construct()  {
 		$this->server = 'localhost';
 		$this->user = 'root';
-		$this->password = 'root';
-		$this->dbname = 'seminaires';
+		$this->password = '';
+		$this->dbname = 'seminaire';
 		try
 		{
 		$this->bd = new PDO("mysql:host=$this->server;dbname=$this->dbname", "$this->user", "$this->password");
