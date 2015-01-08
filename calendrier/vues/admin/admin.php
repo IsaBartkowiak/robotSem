@@ -5,7 +5,7 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-		<title>L'agenda des séminaires scientifiques</title>
+		<title>Administration Agenda séminaires</title>
 		<meta name="description" content="L'agenda des séminaires scientifiques Bordelais" />
 		<meta name="author" content="Codrops" />
 		<link rel="shortcut icon" href="../favicon.ico"> 
@@ -25,22 +25,19 @@
 			
 			<header class="clearfix">
 				<div class="right">
-
-					<h1><img src="../public/assets/images/logo.png" width="180px"/></h1>
-
-
+					<h1><img src="./assets/images/logo.png" width="180px"/></h1>
 				</div>
 
+			
 				<div class="left">
-					<a href="#" id="contact">Contact</a>
-					<a href="#" id="newsletter">Abonnement</a>
-					<?php if ($admin == 'o') { ?><a href="?page=admin" id="else">Admin</a><?php } ?>
+					<a href="?page=admin&deconnexion=o" id="contact">Se déconnecter ( <?php echo $_SESSION['nom']; ?> )</a>
+					<a href="./" id="accuel">Accueil</a>
 				</div>
 			</header>
 
 			<section  class="titre">
 			<div>
-					<h2>Agenda des séminaires scientifiques</h2>
+					<h2>Administration Séminaires statut <?php echo $this->statut; ?></h2>
 			</div>
 
 			<nav class="menu">
@@ -68,10 +65,11 @@
 				</div>
 			</section>
 			</div>
-		<script type="text/javascript" src="../public/assets/js/jquery.calendario.js"></script>
-		<script type="text/javascript" src="../public/assets/js/cal.js"></script>
-		<script type="text/javascript" src="../public/assets/js/main.js"></script>
-
+			<div id="pop-contact">
+			</div>
+		<script type="text/javascript" src="./assets/js/jquery.calendario.js"></script>
+		<script type="text/javascript" src="./assets/js/cal.js"></script>
+		<script type="text/javascript" src="./assets/js/main.js"></script>
 		<script type="text/javascript">	
 var codropsEvents = {
 	'11-23-2014' : '<a href="http://tympanus.net/codrops/2012/11/23/three-script-updates/">Three Script Updates</a>',

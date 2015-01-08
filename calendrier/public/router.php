@@ -7,6 +7,7 @@ $routes = [
 	'admin' => ['url' => 'admin-controller','ct' => 'AdminController'],
 	'envoi-news' => ['url' => 'newsletter-controller', 'ct' => 'NewsletterController']
 ];
+
 $url = (isset($_GET['page']) AND !empty($_GET['page'])) ? $_GET['page'] : 'index';
 // Recherche de l'url dans le tableau de routes
 if (array_key_exists($url, $routes)) {

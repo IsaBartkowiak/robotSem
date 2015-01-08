@@ -1,10 +1,10 @@
 <?php 
 class Database {
-	private $server;
-	private $user;
-	private $password;
-	private $dbname;
-	private $bd;
+	protected $server;
+	protected $user;
+	protected $password;
+	protected $dbname;
+	protected $bd;
 	public function __construct()  {
 		$this->server = 'localhost';
 		$this->user = 'root';
