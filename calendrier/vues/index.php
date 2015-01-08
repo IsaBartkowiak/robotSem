@@ -68,10 +68,10 @@
 				</div>
 			</section>
 			</div>
+			<div id="pop-contact">
+			</div>
 		<script type="text/javascript" src="../public/assets/js/jquery.calendario.js"></script>
 		<script type="text/javascript" src="../public/assets/js/cal.js"></script>
-		<script type="text/javascript" src="../public/assets/js/main.js"></script>
-
 		<script type="text/javascript">	
 var codropsEvents = {
 	'11-23-2014' : '<a href="http://tympanus.net/codrops/2012/11/23/three-script-updates/">Three Script Updates</a>',
@@ -80,5 +80,7 @@ var codropsEvents = {
 		$bd->listerSeminairesCal(); ?>
 	};
 	</script>
+
+		<script type="text/javascript" src="../public/assets/js/main.js"></script>
 	</body>
 </html>
