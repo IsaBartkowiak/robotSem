@@ -29,6 +29,7 @@ class Database {
 		$select->setFetchMode(PDO::FETCH_OBJ);
 		$donnees = array();
 		for ( $i = 0; $ligne = $select->fetch(); $i++ ){
+
 				$donnees[$i]['date'] = date("d", strtotime($ligne->date));
 				$donnees[$i]['titre'] = $ligne->titre;
 				$donnees[$i]['orateur'] = $ligne->orateur;
@@ -43,9 +44,14 @@ class Database {
 		$reponse->execute();
 		while ($donnees = $reponse->fetch())
 		{
+			$titre = html_entity_decode($donnees['titre']);
+			if(preg_match("/'/i", $titre)){
+                $titre = str_replace("'", "\'", $titre);
+            }
+
 			?>
 
-'<?php echo date("m-d-Y", strtotime($donnees['date'])); ?>' : '<span><h2>Titre : <?php echo $donnees['titre']; ?></h2><p>Orateur : <?php echo $donnees['orateur']; ?></p><p>Lieu : <?php echo $donnees['lieu']; ?></p><img src="assets/images/logo-<?php echo $donnees['labo']; ?>.png"/></span>',<?php
+'<?php echo date("m-d-Y", strtotime($donnees['date'])); ?>' : '<span><h2>Titre : <?php echo $titre; ?></h2><p>Orateur : <?php echo $donnees['orateur']; ?></p><p>Lieu : <?php echo $donnees['lieu']; ?></p><img src="assets/images/logo-<?php echo $donnees['labo']; ?>.png"/></span>',<?php
 		}
 	}
 	public function ajouterAbonne($mail) {
