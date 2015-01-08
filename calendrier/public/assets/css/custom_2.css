@@ -1,5 +1,13 @@
 /* Custom calendar elements */
-
+#login {
+	text-align: center
+}
+.input {
+	margin: 10px;
+	border-radius: 4px;
+    margin: 10px;
+    padding: 5px;
+}
 .custom-calendar-wrap {
 	box-shadow: 0.5px 0.866px 5px 0px rgb(199, 199, 199);
 	margin: 10px auto;

@@ -1,10 +1,16 @@
 <?php 
+/******************************/
+/*     Controlleur Index      */ 
+/******************************/
 class Controller {
 	protected $url;
 	public function __construct($url) {
 		$this->url = $url;
 	}
 	public function indexAction() {
+		if (isset($_SESSION['nom']) OR isset($_COOKIE['password'])) {
+			$admin = 'o';
+		}
 		include '../vues/index.php';
 	}
 	public function listeAction() {

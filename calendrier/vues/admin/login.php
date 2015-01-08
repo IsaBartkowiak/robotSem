@@ -5,7 +5,7 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-		<title>L'agenda des séminaires scientifiques</title>
+		<title>Administration Agenda séminaires</title>
 		<meta name="description" content="L'agenda des séminaires scientifiques Bordelais" />
 		<meta name="author" content="Codrops" />
 		<link rel="shortcut icon" href="../favicon.ico"> 
@@ -28,41 +28,27 @@
 					<h1><img src="./assets/images/logo.png" width="180px"/></h1>
 				</div>
 
-				<div class="left">
-					<a href="#" id="contact">Contact</a>
-					<a href="#" id="newsletter">Abonnement</a>
-					<?php if ($admin == 'o') { ?><a href="?page=admin" id="else">Admin</a><?php } ?>
-				</div>
+			
 			</header>
 
 			<section  class="titre">
 			<div>
-					<h2>Agenda des séminaires scientifiques</h2>
+					<h2>Connexion à l'administration</h2>
 			</div>
 
-			<nav class="menu">
-				<ul>
-					<li class="sp"><a href="#" onclick="$('#calendrier').fadeIn();$('#affichageliste').hide();">CALENDRIER</a></li>
-					<li class="sep"><a href="#" onclick="$('#affichageliste').fadeIn();$('#affichageliste').load('index.php?page=liste');$('#calendrier').hide();">LISTE</a></li>
-				</ul>
-			</nav>
+			
 			</section>
 			<section id="affichageliste">
 			</section>
 			<section class="main animated fadeInUp" id="calendrier">
-				<div class="custom-calendar-wrap">
-					<div id="custom-inner" class="custom-inner">
-						<div class="custom-header clearfix">
-							<nav>
-								<span id="custom-prev" class="custom-prev"></span>
-								<span id="custom-next" class="custom-next"></span>
-							</nav>
-							<h2 id="custom-month" class="custom-month"></h2>
-							<h3 id="custom-year" class="custom-year"></h3>
-						</div>
-						<div id="calendar" class="fc-calendar-container"></div>
-					</div>
-				</div>
+				<form id="login" action="./index.php?page=admin" method="POST">
+				<input class="input" type="text" name="login" placeholder="Identifiant">
+		
+				<input class="input" type="password" name="password" placeholder="Mot de passe">
+	
+				<input class="input" type="submit" value="Se connecter">
+				</form>
+
 			</section>
 			</div>
 			<div id="pop-contact">
