@@ -12,12 +12,12 @@
 		<link href='http://fonts.googleapis.com/css?family=Metrophobic' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
 
-		<link rel="stylesheet" type="text/css" href="../public/assets/css/calendar.css" />
-		<link rel="stylesheet" href="../public/assets/css/font-awesome.min.css">
-		<link rel="stylesheet" type="text/css" href="../public/assets/css/custom_2.css" />
-		<link rel="stylesheet" type="text/css" href="../public/assets/css/animate.css" />
-		<script src="../public/assets/js/modernizr.custom.63321.js"></script>
-		<script type="text/javascript" src="../public/assets/js/jquery.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="./assets/css/calendar.css" />
+		<link rel="stylesheet" href="./assets/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="./assets/css/custom_2.css" />
+		<link rel="stylesheet" type="text/css" href="./assets/css/animate.css" />
+		<script src="./assets/js/modernizr.custom.63321.js"></script>
+		<script type="text/javascript" src="./assets/js/jquery.min.js"></script>
 	</head>
 	<body>
 		<div class="container">	
@@ -25,11 +25,15 @@
 			
 			<header class="clearfix">
 				<div class="right">
+
 					<h1><img src="../public/assets/images/logo.png" width="180px"/></h1>
+
+
 				</div>
 
 				<div class="left">
-					<a href="#">contact</a>
+					<a href="#" id="contact">Contact</a>
+					<a href="#" id="newsletter">Abonnement</a>
 				</div>
 			</header>
 
@@ -41,7 +45,7 @@
 			<nav class="menu">
 				<ul>
 					<li class="sp"><a href="#" onclick="$('#calendrier').fadeIn();$('#affichageliste').hide();">CALENDRIER</a></li>
-					<li class="sep"><a href="#" onclick="$('#affichageliste').fadeIn();$('#affichageliste').load('liste.php');$('#calendrier').hide();">LISTE</a></li>
+					<li class="sep"><a href="#" onclick="$('#affichageliste').fadeIn();$('#affichageliste').load('index.php?page=liste');$('#calendrier').hide();">LISTE</a></li>
 				</ul>
 			</nav>
 			</section>
@@ -66,10 +70,13 @@
 		<script type="text/javascript" src="../public/assets/js/jquery.calendario.js"></script>
 		<script type="text/javascript" src="../public/assets/js/cal.js"></script>
 		<script type="text/javascript" src="../public/assets/js/main.js"></script>
+
 		<script type="text/javascript">	
 var codropsEvents = {
 	'11-23-2014' : '<a href="http://tympanus.net/codrops/2012/11/23/three-script-updates/">Three Script Updates</a>',
-		<?php $bd->listerSeminairesCal(); ?>
+		<?php 
+		global $bd;
+		$bd->listerSeminairesCal(); ?>
 	};
 	</script>
 	</body>

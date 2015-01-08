@@ -16,16 +16,38 @@
 
 
 include('simplehtmldom_1_5/simple_html_dom.php');
-include('functions.php');
- 
-// récupère le dom de l'url 
-
-$html = file_get_contents('http://www.loma.cnrs.fr/category/actualite-loma/actualite-congres-seminaires-loma/');
-ini_set('error_reporting', E_ALL);
-    ini_set('display_errors', 1);
-     print_r($html);
 
 
+
+
+
+$url = 'https://www.loma.cnrs.fr/category/actualite-loma/actualite-congres-seminaires-loma/';
+$timeout = 10;
+
+$ch = curl_init($url);
+
+curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
+curl_setopt($ch, CURLOPT_TIMEOUT, $timeout);
+curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+
+if (preg_match('`^https://`i', $url))
+{
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+}
+
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+// Récupération du contenu retourné par la requête
+$page_content = curl_exec($ch);
+curl_close($ch);
+
+
+$link = explode('<h3 class="title"><a href="', $page_content);
+
+print_r($link);
+echo $link[1];
 ?>
 
 </body>

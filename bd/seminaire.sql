@@ -34,8 +34,7 @@ CREATE TABLE IF NOT EXISTS `seminaire` (
   `labo` varchar(30) NOT NULL DEFAULT 'none',
   `id` int(3) NOT NULL AUTO_INCREMENT,
   `lien` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`),
-  FULLTEXT KEY `lieu` (`lieu`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=337 ;
 
 --

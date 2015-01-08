@@ -21,7 +21,7 @@ class RobotSeminaire {
 
                
                 // INIT (valeur pas défaut)
-                $seminaire[$i]['lien'] = "";
+                $seminaire[$i]['lien'] = "http://www.lof.cnrs.fr/spip.php?rubrique84";
                 $seminaire[$i]['orateur'] = "";
                 $seminaire[$i]['lieu'] = "LOF, Pessac";
                
@@ -70,6 +70,9 @@ class RobotSeminaire {
 
             }
 
+            //DEBUG
+            //print_r($seminaire);
+
             return  $seminaire;
 
 } 
@@ -98,7 +101,7 @@ class RobotSeminaire {
 
                   //TITRE
                    foreach($e->find('strong') as $titre){
-                    $seminaire[$i]['titre']=utf8_encode($titre->plaintext);
+                    $seminaire[$i]['titre']=$titre->plaintext;
                     }
 
                     if (empty($seminaire [$i]['titre'])){
@@ -186,65 +189,113 @@ class RobotSeminaire {
                 }
         }
 
-        $y=0;
+        $y=0; //compteur
         $collection = $html->find('font');
         foreach($collection as $e) {
+            
+            if(isset($e->face) && !strpos($e,'Calendrier') && !empty($e->find('font'))) { 
+            
+                    //TITRE
+                    foreach ($e->find('i') as $t){
+                            $titre = $t->innertext;
+                    }
 
-            if(isset($e->face) && !strpos($e,'Calendrier')) { 
-                    $pattern = '#<a[^<]*>[^<]*</a>#im';
-                    $e = preg_replace($pattern, '', $e);
-                    $e = strip_tags($e);
-                    $date = strstr($e, ',', true);// date OK
-                    $heur = strstr($e, ',');
-                    $heur = preg_replace('/,/', '', $heur, 1);
-                    $heure = strstr($heur, ',', true); // HEURE OK
-                    $lie = strstr($heur, ',');
-                    $lie = preg_replace('/,/', '', $lie, 1);
-                    $lieu = strstr($lie, ',', true);// LIEU OK
-                    $orateu = strstr($lie, ',');
-                    $orateu = preg_replace('/,/', '', $orateu, 1);
-                    $orate = strstr($orateu, ',');
-                    $orate = preg_replace('/,/', '', $orate, 1);
+                    //ORATEUR
+                    foreach ($e->find('font') as $o){
+                         $orateur = $o->innertext;
+                    }
 
-                    if (strpos($orate,'(')){
-                    $orat = strstr($orate, ')', true); 
-                    }
-                    else {
-                    $orat = strstr($orate, ',', true); 
-                    }
-                    $orateu = str_replace('(','', $orat);
-                    $orateur = str_replace(')','', $orateu); // ORATEUR OK 
-                    if (strpos($orate,'(')){
-                    $suj = strstr($orate, ')'); 
-                    }
-                    else {
-                    $suj = strstr($orate, ','); 
-                    }
-                    
-                   
-                    $suj = str_replace(')', '', $suj);
-                    $suj = str_replace(',', '', $suj);
-                    $sujet = preg_replace('/,/', '', $suj, 1); // SUJET OK
-                    echo 'DATE : '.$this->format_date($date).'<br> HEURE : '.$heure.'<br> LIEU : '. $lieu.'<br> ORATEUR : '.$orateur.'<br> SUJET : '.$sujet.'<br> Lien : '.$link.'<br><br>';
-                    
+                    //DATE + LIEU + TYPE
+                    $element= $e->plaintext;
+                    $element = explode(',', $element, 6);
 
-                    $seminaire [$y]['date']=$this->format_date($date);
-                    $seminaire [$y]['titre']=utf8_encode($sujet);
-                    $seminaire [$y]['orateur']=utf8_encode($orateur);
+                    $date = $this->format_date($element[0]);
+
+                    $seminaire[$y]['date']= trim($date);
+                        if($element[3]==" "){
+                            $seminaire[$y]['titre']=$titre; 
+                        }else{
+                            $seminaire[$y]['titre']=$element[3].': '.$titre;  //type + titre 
+                        }
+
+
+
+                    $seminaire [$y]['orateur']=$orateur;
                     $seminaire [$y]['lien']= 'http://www.crpp-bordeaux.cnrs.fr/spip.php?page=seminaires&type=actualite';
-                    $seminaire [$y]['lieu']=$lieu;
+                    $seminaire [$y]['lieu']=$element[2];
                     $seminaire [$y]['labo']='CRPP';
-                     $y= $y+1;  
-                 }
-                  
-            }
-
-            print_r($seminaire);
+                    $y= $y+1;  
+            }//fin if
+        }
+            //DEBUG
+            //print_r($seminaire);
             return $seminaire;
+    }
+
+
+    /*------------------------------------------------------
+    EXTRACTION DES DONNEES DU LABO LOF 
+    retourne une tableau 2D associatif de la forme 
+    $seminaire[$i]['titre']
+    $seminaire[$i]['date']
+    $seminaire[$i]['orateur']
+    $seminaire[$i]['lieu']
+    $seminaire[$i]['lien']
+    $seminaire[$i]['labo']
+    ------------------------------------------------------*/
+    public function setSemObsu($html){
+
+        $y=0; //compteur
+        $collection = $html->find('a');
+        foreach($collection as $e) {
+            if(isset($e->title)) { 
+
+                // DATE
+                $date  = $e->title;
+                $date = strstr($date, '201');
+                $date = strstr($date, ' ', true);
+                
+                //TITRE
+                
+                $titre = $e->title;
+                $titre2 = $e->title;
+                $titre = strstr($titre, '201', true);
+
+
+                //ORATEUR 
+                if(preg_match("/par/i", $titre)){
+                    $titre = strstr($titre, "par", false);
+                    $titre2 = strstr($titre2, "par", true);
+
+                }
+
+
+                $titre = str_replace('Salle', '', $titre);
+                $titre = str_replace('Bouguer', '', $titre);
+                $titre = substr($titre, 0, -5);
+                $el = explode(' ', $titre, 4);
+                $tit = strstr($el[3], ")", false);
+                $tit = str_replace(',', '', $tit);
+                 $tit = str_replace(')', '', $tit);
+                 $tit = str_replace('(', '', $tit);
+                $orateur = $titre;
+                $orateur = str_replace('par', '', $orateur);
+
+                //affectation au tableau
+                $seminaire [$y]['date']=$date;
+                $seminaire [$y]['titre']= $titre2;
+                $seminaire [$y]['orateur']=$orateur;
+                $seminaire [$y]['lien']= 'http://www.obs.u-bordeaux1.fr'.$e->href;
+                $seminaire [$y]['lieu']='Salle Bouguer';
+                $seminaire [$y]['labo']='Obs-U';
+                $y = $y+1;
+            }
+        } //fin foreach
+
+        return $seminaire;
 
 
     }
-
 
 //********************************************************FONCTIONS ANNEXES******************************************************//
 //******************************************************************************************************************************//
@@ -301,19 +352,19 @@ class RobotSeminaire {
     private function format_date($dt){ 
     
             $dt = preg_replace("/é/i","e", $dt);
-            $mois = ['Janvier'=>'jan', 'Fevrier'=>'feb', 'Mars'=>'mar', 'Avril'=>'apr', 'Mai'=>'may', 'Juin'=>'Jun', 'Juillet'=>'Jul', 'Août'=>'aug', 'Septembre'=>'sep','Octobre'=>'oct', 'Novembre'=>'nov', 'Decembre'=>'dec'];
+            $mois = ['Janvier'=>'jan', 'Fevrier'=>'feb', 'Février'=>'feb', 'Mars'=>'mar', 'Avril'=>'apr', 'Mai'=>'may', 'Juin'=>'Jun', 'Juillet'=>'Jul', 'Août'=>'aug', 'Aout'=>'aug', 'Septembre'=>'sep','Octobre'=>'oct', 'Novembre'=>'nov', 'Decembre'=>'dec', 'Décembre'=>'dec'];
             foreach($mois as $key=>$e){
+              if (empty($dt)){
+                $dt = '12 Décembre 2014';
+            }
             $dt =preg_replace("/".$key."/i",$e, $dt);
             }
             
             $dt = trim($dt);
-
-            if (empty($dt)){
-                $dt = '2014-12-12';
-            }
          
             $format = 'j M Y';
             $date = DateTime::createFromFormat($format, $dt);
+            
             return $date->format('Y-m-d');
     }
 

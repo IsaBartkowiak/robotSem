@@ -5,11 +5,13 @@
 
 include('RobotSeminaire.php');
 include('Database.php');
-// récupère le dom de l'url 
-include('simplehtmldom_1_5/simple_html_dom.php');
+include('simple_html_dom.php');
+
 $dataLof= file_get_html('http://www.lof.cnrs.fr/spip.php?rubrique84');
-$dataCenbg = file_get_html('http://www.cenbg.in2p3.fr/-Annee-2014-');
+$dataCenbg = file_get_html('http://www.cenbg.in2p3.fr/-Annee-2015-');
 $dataCrpp = file_get_html('http://www.crpp-bordeaux.cnrs.fr/spip.php?page=seminaires&type=actualite');
+$dataObsu = file_get_html('http://www.obs.u-bordeaux1.fr/seminaires/liste_seminaires.php');
+
 
 // INIT 
 $extraction = new RobotSeminaire();
@@ -19,14 +21,14 @@ $database = new Database();
 $seminairesLof = $extraction->setSemLof($dataLof);
 $seminairesCenbg = $extraction->setSemCenbg($dataCenbg);
 $seminairesCrpp = $extraction->setSemCrpp($dataCrpp);
+$seminairesObsu = $extraction->setSemObsu($dataObsu);
 
-//print_r($seminairesLof);
-//print_r($seminairesCrpp);
 
 //INSERTION DANS BD
 $database->insertSeminaire($seminairesLof);
 $database->insertSeminaire($seminairesCenbg);
 $database->insertSeminaire($seminairesCrpp);
+$database->insertSeminaire($seminairesObsu);
 
 
 
