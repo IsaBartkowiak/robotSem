@@ -1,7 +1,6 @@
 <?php 
-error_reporting(E_ALL);
-ini_set('display_error', 1);
+session_start();
 require_once 'bdd.php';
 $bd = new Database();
-include '../vues/index.php';
+require_once 'router.php';
 ?>

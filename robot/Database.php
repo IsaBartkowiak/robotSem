@@ -15,8 +15,8 @@
 
              try
             {
-              $pdo = new PDO('mysql:host='.$this->server.';dbname='.$this->dbname, $this->user, $this->pword); 
-                $pdo->query("SET NAMES 'utf8'");
+              $pdo = new PDO('mysql:host='.$this->server.';dbname='.$this->dbname.';charset=utf8', $this->user, $this->pword); 
+            $pdo->query("SET NAMES 'utf8'");
               $this->pdo = $pdo;  
             }
             catch (Exception $e)
@@ -33,8 +33,7 @@
 
     public function insertSeminaire($seminaire){ 
 
-          
-         
+   
             $x=0;
 
             foreach ($seminaire as $key=>$values){
@@ -45,13 +44,20 @@
             $labo = $seminaire[$x]['labo'];
             $lien = $seminaire[$x]['lien'];
 
-            $stmt = $this->pdo->exec("INSERT INTO seminaire (titre, date, orateur, lieu, labo, lien) 
-            SELECT * FROM (SELECT '$titre','$date','$orateur','$lieu','$labo','$lien') AS tmp
-            WHERE NOT EXISTS (
-            SELECT titre FROM seminaire WHERE titre = '$titre'
-            )");
+            //En cas de présence d'apostrophe dans le titre (pour requete SQL)
+            if(preg_match("/'/i", $titre)){
+                $titre = str_replace("'", "\'", $titre);
+            }
 
-         
+
+            $test = $this->pdo->prepare("SELECT titre FROM seminaire WHERE titre = '$titre' AND date = '$date'");
+            $test->execute();
+            $row = $test->fetch(PDO::FETCH_ASSOC);
+
+               
+                if(empty($row)){
+                     $stmt = $this->pdo->exec("INSERT INTO seminaire (titre, date, orateur, lieu, labo, lien) VALUES ('$titre','$date','$orateur','$lieu','$labo','$lien')");
+                }
             
             $x++;    
             }
