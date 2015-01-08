@@ -11,6 +11,9 @@ class Controller {
 		if (isset($_SESSION['nom']) OR isset($_COOKIE['password'])) {
 			$admin = 'o';
 		}
+		else {
+			$admin = 'n';
+		}
 		include '../vues/index.php';
 	}
 	public function listeAction() {
