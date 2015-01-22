@@ -17,6 +17,26 @@ class AdminController {
 				setcookie('nom', 'Simon Villain-Guillot', time() + 30*24*3600, null, null, false, true);
 				setcookie('password', $this->admin['password'], time() + 30*24*3600, null, null, false, true);
 				include '../vues/admin/admin.php';
+					if (isset($_GET['action'])) {
+						    switch ($_GET['action']) {
+						        case "syncro":
+						            include '../vues/admin/onglets/content-syncro.php';
+						            break;
+						        case "ajouter":
+						            include '../vues/admin/onglets/content-ajouter.php';
+						            break;
+						        case "editer":
+						            include '../vues/admin/onglets/content-editer.php';
+						            break;
+						        case "editerp":
+						            include '../vues/admin/onglets/content-editerp.php';
+						            break;
+						   	 }
+						} else {
+					    	include 'content-index.php';
+						}
+				include '../vues/admin/admin-footer.php';
+
 			}
 			
 			elseif ($this->statut=='contributeur') {

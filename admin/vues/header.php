@@ -1,25 +1,4 @@
-<!DOCTYPE html>
-<!--[if IE 9]><html class="no-js ie9"><![endif]-->
-<!--[if gt IE 9]><!--><html class="no-js"><!--<![endif]-->
-	<head>
-<meta charset="utf-8"/>
-<title>Administration robot séminaire</title>
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<!-- BEGIN GLOBAL MANDATORY STYLES -->
-<link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-<link href="../public/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-<link href="../public/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-<link href="../public/assets/global/css/components.css" id="style_components" rel="stylesheet" type="text/css"/>
-<link href="../public/assets/global/css/plugins.css" rel="stylesheet" type="text/css"/>
-<link href="../public/assets/css/layout.css" rel="stylesheet" type="text/css"/>
-<link href="../public/assets/css/themes/grey.css" rel="stylesheet" type="text/css" id="style_color"/>
-<link href="../public/assets/css/custom.css" rel="stylesheet" type="text/css"/>
-<link rel="shortcut icon" href="favicon.ico"/>
-	</head>
-	<body class="page-boxed page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid page-sidebar-closed-hide-logo">
-	<div class="page-header navbar navbar-fixed-top">
+<div class="page-header navbar navbar-fixed-top">
 	<!-- BEGIN HEADER INNER -->
 	<div class="page-header-inner container">
 		<!-- BEGIN LOGO -->
@@ -59,7 +38,7 @@
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
 						<img alt="" class="img-circle" src="../public/assets/img/avatar.png"/>
 						<span class="username username-hide-on-mobile">
-						<a href="?page=admin&deconnexion=o" id="contact">Se déconnecter ( <?php echo $_SESSION['nom']; ?> )</a></span>
+						Simon Villain-Guillot </span>
 						<i class="fa fa-angle-down"></i>
 						</a>
 						<ul class="dropdown-menu dropdown-menu-default">
@@ -132,4 +111,3 @@
 				<!-- END SIDEBAR MENU -->
 			</div>
 		</div>
-
