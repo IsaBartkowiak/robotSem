@@ -18,20 +18,20 @@
 	<?php if (isset($_GET['action'])) {
 	    switch ($_GET['action']) {
 	        case "syncro":
-	            include 'content-syncro.php';
+	            include '../application/vues/content-syncro.php';
 	            break;
 	        case "ajouter":
-	            include 'content-ajouter.php';
+	            include '../application/vues/content-ajouter.php';
 	            break;
 	        case "editer":
-	            include 'content-editer.php';
+	            include '../application/vues/content-editer.php';
 	            break;
 	        case "editerp":
-	            include 'content-editerp.php';
+	            include '../application/vues/content-editerp.php';
 	            break;
 	   	 }
 	} else {
-    	include 'content-index.php';
+    	include '../application/vues/content-index.php';
 	}
 	?>
 	<!-- .......................-->
